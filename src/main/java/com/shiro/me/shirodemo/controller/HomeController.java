@@ -21,10 +21,10 @@ import java.util.Map;
 public class HomeController {
     @GetMapping("/")
     public String home() {
-        return "/index";
+        return "index";
     }
 
-    @GetMapping("/login")
+    @PostMapping("/loginForm")
     public String login(HttpServletRequest request, Map<String, Object> map) {
         log.info("===HomeController.login()===");
         String exception = (String) request.getAttribute("shiroLoginFailure");
@@ -47,7 +47,7 @@ public class HomeController {
         map.put("msg", msg);
 
         // 此方法不处理登录成功,由shiro进行处理
-        return "/login";
+        return "redirect:/index";
     }
 
     @GetMapping("/403")
